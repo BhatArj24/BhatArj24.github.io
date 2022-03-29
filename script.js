@@ -1,10 +1,34 @@
 var height = 8;
-var width = 6;
+var width = 5;
+const players = [];
+
 
 window.onload = function(){
     intialize();
 }
 
+
+
+const Hi = new Player('Hi',12,'j','wk',2);
+players.add(Hi);
+
+class Player{
+    name;
+    age;
+    team;
+    position;
+    number;
+    constructor(name,age,team,position,number){
+        this.name = name;
+        this.age = age;
+        this.team = team;
+        this.position = position;
+        this.number = number;
+
+    }
+    
+
+}
 function intialize() {
             
     // Create the game board
@@ -28,7 +52,11 @@ function intialize() {
 }
 
 function checkGuess(){
-    var value = document.getElementById("guess-field").value;
+    players.forEach(player => {
+        if(document.getElementById("guess-field").value == player.name){
+            console.log("match")
+        }
+    });
     
 }
 
