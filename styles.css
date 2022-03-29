@@ -1,1 +1,54 @@
+hr {
+  width: 500px;
+}
 
+h1 {
+  margin-left: 47%;
+  margin-top: 1%;
+  font-family: sans-serif;
+}
+
+.tile {
+  /* Box */
+  border: 2px solid lightgray;
+  width: 60px;
+  height: 60px;
+  margin: 2.5px;
+
+  /* Text */
+  color: black;
+  font-size: 36px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.name {
+  width: 240px;
+}
+.team {
+  width: 100px;
+}
+
+#guesses {
+  width: 700px;
+  height: 420px;
+  margin: 0 auto;
+  margin-top: 3px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+input {
+  width: 150px;
+  height: 30px;
+  margin-top: 3px;
+}
+
+#user-guess {
+  margin-left: 40%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
