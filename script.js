@@ -7,11 +7,6 @@ window.onload = function(){
     intialize();
 }
 
-
-
-const Hi = new Player('Hi',12,'j','wk',2);
-players.add(Hi);
-
 class Player{
     name;
     age;
@@ -59,4 +54,9 @@ function checkGuess(){
     });
     
 }
+
+const Hi = new Player('Hi',12,'j','wk',2);
+players.add(Hi);
+
+
 
