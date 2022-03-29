@@ -1,6 +1,8 @@
 var height = 8;
 var width = 5;
 const players = [];
+var curr_height = 0;
+
 
 
 window.onload = function(){
@@ -47,17 +49,28 @@ function intialize() {
 }
 
 function checkGuess(){
+    
     players.forEach(player => {
         let guess = document.getElementById("guess-field").value;
-        console.log(player.name);
-        if(guess == player.name){
-            console.log("match");
+        guess = guess.toString()
+        guess = guess.toLowerCase();
+        if(guess == player.name.toLowerCase()){
+            let user_guess_name = player.name;
+            let user_guess_age = player.age;
+            let user_guess_team = player.team;
+            let user_guess_position = player.position;
+            let user_guess_number = player.number;
+            break;
         }
-        else{
-            console.log(guess);
 
-        }
     });
+
+    for(let i=0;i<width;i++){
+        let ch = document.getElementById(curr_height+"-"+i);
+        ch.innerText(player.name);
+    }
+    
+
     
 }
 
