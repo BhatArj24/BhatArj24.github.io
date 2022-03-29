@@ -48,8 +48,14 @@ function intialize() {
 
 function checkGuess(){
     players.forEach(player => {
-        if(document.getElementById("guess-field").value == player.name){
-            console.log("match")
+        let guess = document.getElementById("guess-field").value;
+        console.log(player.name);
+        if(guess == player.name){
+            console.log("match");
+        }
+        else{
+            console.log(guess);
+
         }
     });
     
