@@ -52,6 +52,7 @@ function checkGuess(){
     
     players.forEach(player => {
         let guess = document.getElementById("guess-field").value;
+        let valid = false;
         guess = guess.toString()
         guess = guess.toLowerCase();
         if(guess == player.name.toLowerCase()){
@@ -60,17 +61,17 @@ function checkGuess(){
             let user_guess_team = player.team;
             let user_guess_position = player.position;
             let user_guess_number = player.number;
+            valid = true;
             break;
         }
 
     });
-
-    for(let i=0;i<width;i++){
-        let ch = document.getElementById(curr_height+"-"+i);
-        ch.innerText(player.name);
+    if(valid){
+        for(let i=0;i<width;i++){
+            let ch = document.getElementById(curr_height+"-"+i);
+            ch.innerText(player.name);
+        }
     }
-    
-
     
 }
 
