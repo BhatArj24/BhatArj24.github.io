@@ -56,7 +56,7 @@ function checkGuess(){
 }
 
 const Hi = new Player('Hi',12,'j','wk',2);
-players.add(Hi);
+players.push(Hi);
 
 
 
