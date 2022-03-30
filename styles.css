@@ -14,20 +14,22 @@ h1 {
   width: 60px;
   height: 60px;
   margin: 2.5px;
-
+  background-size: 70px;
+  background-position: center;
   /* Text */
   color: black;
-  font-size: 36px;
+  font-size: 24px;
   font-weight: bold;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: sans-serif;
 }
 .name {
   width: 240px;
 }
 .team {
-  width: 100px;
+  width: 80px;
 }
 
 #guesses {
@@ -51,4 +53,21 @@ input {
   flex-wrap: wrap;
   margin-top: 2%;
   margin-bottom: 2%;
+}
+.correct {
+  background-color: #6aaa64;
+  color: white;
+  border-color: white;
+}
+
+.present {
+  background-color: #c9b458;
+  color: white;
+  border-color: white;
+}
+
+.absent {
+  background-color: #787c7e;
+  color: white;
+  border-color: white;
 }
