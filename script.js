@@ -4,7 +4,6 @@ const players = [];
 var curr_height = 0;
 
 
-
 window.onload = function(){
     intialize();
 }
@@ -53,7 +52,8 @@ function check_age(user_guess_age,answer_age){
     }
 }
 function intialize() {
-            
+    
+    
     // Create the game board
     for (let r = 0; r < height; r++) {
         for (let c = 0; c < width; c++) {
@@ -75,77 +75,63 @@ function intialize() {
 }
 
 function checkGuess(){
-    let valid = false;
-    let user_guess_name;
-    let user_guess_age;
-    let user_guess_team;
-    let user_guess_position;
-    let user_guess_number;
-    let r_answer = 'Virat Kohli';
-    let answer_name;
-    let answer_age;
-    let answer_team;
-    let answer_position;
-    let answer_number;
-    players.forEach(player => {
-        
-        r_answer.toLowerCase();
-        if(r_answer == player.name){
-            answer_name = player.name;
-            console.log(answer_name);
-            answer_age = player.age;
-            answer_team = player.team;
-            answer_position = player.position;
-            answer_number = player.number;
-        }
     
-    });
+    
     //Getting info of user guessed player
-    players.forEach(player => {
+   
         let guess = document.getElementById("guess-field").value;
-        
-        guess = guess.toString()
+        let name_split = guess.split(" ");
+        let first_name = name_split[0];
+        let last_name = name_split[1];
+        let url_name = first_name +"%20"+last_name;
+        let url = "https://api.cricapi.com/v1/players?apikey=f24486e8-5f6f-44b9-a205-b80a9dcf2fc0&offset=0&search="+url_name;
+        fetch(url)
+            .then(response => response.json())
+            .then(player => {
+                document.getElementById("fetch_id").innerHTML = player.data[0].id;
+            });
+        guess = guess.toString();
         guess = guess.toLowerCase();
-        if(guess == player.name.toLowerCase()){
-            user_guess_name = player.name;
-            user_guess_age = player.age;
-            user_guess_team = player.team;
-            user_guess_position = player.position;
-            user_guess_number = player.number;
-            valid = true;
-        }
+        let id = document.getElementById("fetch_id");
+        
+        id.style.visibility = 'hidden';
+        
+        url = "https://api.cricapi.com/v1/players_info?apikey=f24486e8-5f6f-44b9-a205-b80a9dcf2fc0&offset=0&id="+id.innerText;
+        console.log(url);
+        fetch(url)
+            .then(response => response.json())
+            .then(player=>console.log(player));
 
-    });
+    
     //Putting info user guessed player in tiles
-    if(valid){
-        for(let i=0;i<width;i++){
-            let ch = document.getElementById(curr_height+"-"+i);
-            if(i==0){
-                ch.innerHTML = user_guess_name;
-            }
-            else if(i==1){
-                ch.innerHTML = user_guess_age;
-            }
-            else if(i==2){
-                ch.innerHTML = user_guess_team;
-            }
-            else if(i==3){
-                ch.innerHTML = user_guess_position;
-            }
-            else if(i==4){
-                ch.innerHTML = user_guess_number;
-            }
+    // if(true){
+    //     for(let i=0;i<width;i++){
+    //         let ch = document.getElementById(curr_height+"-"+i);
+    //         if(i==0){
+    //             ch.innerHTML = user_guess_name;
+    //         }
+    //         else if(i==1){
+    //             ch.innerHTML = user_guess_age;
+    //         }
+    //         else if(i==2){
+    //             ch.innerHTML = user_guess_team;
+    //         }
+    //         else if(i==3){
+    //             ch.innerHTML = user_guess_position;
+    //         }
+    //         else if(i==4){
+    //             ch.innerHTML = user_guess_number;
+    //         }
             
-        }
-        check_name(user_guess_name,answer_name);
-        check_age(user_guess_age,answer_age);
-        curr_height+=1;
-    }
-    //Displays not in list if user guess not valid
-    else{
-        document.getElementById("message").innerHTML = "Not in list";
-    }
-    console.log(answer_name);
+    //     }
+        
+    //     curr_height+=1;
+    // }
+    // //Displays not in list if user guess not valid
+    // else{
+    //     document.getElementById("message").innerHTML = "Not in list";
+    // }
+    // console.log(answer_name);
     
     
     
@@ -157,10 +143,6 @@ function checkGuess(){
 
 
 
-const Virat_Kohli = new Player('Virat Kohli',32,'India','Bat',18);
-players.push(Virat_Kohli);
-const KL_Rahul = new Player('Kl Rahul',30,'India','Bat',22);
-players.push(KL_Rahul);
 
 
 
