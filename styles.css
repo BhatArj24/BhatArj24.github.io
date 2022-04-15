@@ -71,3 +71,7 @@ input {
   color: white;
   border-color: white;
 }
+
+.hidden{
+  visibility: hidden;
+}

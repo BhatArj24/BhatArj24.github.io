@@ -92,46 +92,54 @@ function checkGuess(){
             });
         guess = guess.toString();
         guess = guess.toLowerCase();
+      
         let id = document.getElementById("fetch_id");
         
-        id.style.visibility = 'hidden';
-        
-        url = "https://api.cricapi.com/v1/players_info?apikey=f24486e8-5f6f-44b9-a205-b80a9dcf2fc0&offset=0&id="+id.innerText;
+        // id.style.visibility = 'hidden';
+
+        setTimeout(console.log('wait'),50000);
+        url = "https://api.cricapi.com/v1/players_info?apikey=f24486e8-5f6f-44b9-a205-b80a9dcf2fc0&offset=0&id="+id.innerHTML;
         console.log(url);
         fetch(url)
             .then(response => response.json())
-            .then(player=>console.log(player));
+            .then(player=>{
+                document.getElementById("user_name").innerHTML = player.data[0].name;
+            });
 
-    
-    //Putting info user guessed player in tiles
-    // if(true){
-    //     for(let i=0;i<width;i++){
-    //         let ch = document.getElementById(curr_height+"-"+i);
-    //         if(i==0){
-    //             ch.innerHTML = user_guess_name;
-    //         }
-    //         else if(i==1){
-    //             ch.innerHTML = user_guess_age;
-    //         }
-    //         else if(i==2){
-    //             ch.innerHTML = user_guess_team;
-    //         }
-    //         else if(i==3){
-    //             ch.innerHTML = user_guess_position;
-    //         }
-    //         else if(i==4){
-    //             ch.innerHTML = user_guess_number;
-    //         }
-            
-    //     }
+        user_guess_name = document.getElementById("user_name").innerHTML;
         
-    //     curr_height+=1;
-    // }
-    // //Displays not in list if user guess not valid
-    // else{
-    //     document.getElementById("message").innerHTML = "Not in list";
-    // }
-    // console.log(answer_name);
+            
+
+        
+        
+    
+    // Putting info user guessed player in tiles
+    if(true){
+        for(let i=0;i<width;i++){
+            let ch = document.getElementById(curr_height+"-"+i);
+            if(i==0){
+                ch.innerHTML = user_guess_name;
+            }
+            else if(i==1){
+                ch.innerHTML = user_guess_age;
+            }
+            else if(i==2){
+                ch.innerHTML = user_guess_team;
+            }
+            else if(i==3){
+                ch.innerHTML = user_guess_position;
+            }
+            else if(i==4){
+                ch.innerHTML = user_guess_number;
+            }
+            
+        }
+        
+        curr_height+=1;
+    }
+    //Displays not in list if user guess not valid
+
+    console.log(answer_name);
     
     
     
