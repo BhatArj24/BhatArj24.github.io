@@ -2,7 +2,7 @@ var height = 8;
 var width = 5;
 const players = [];
 var curr_height = 0;
-
+var answer_name;
 
 window.onload = function(){
     intialize();
@@ -52,8 +52,7 @@ function check_age(user_guess_age,answer_age){
     }
 }
 function intialize() {
-    
-    
+    answer_name = 'Virat Kohli';
     // Create the game board
     for (let r = 0; r < height; r++) {
         for (let c = 0; c < width; c++) {
@@ -97,45 +96,53 @@ function checkGuess(){
         
         // id.style.visibility = 'hidden';
 
-        setTimeout(console.log('wait'),50000);
-        url = "https://api.cricapi.com/v1/players_info?apikey=f24486e8-5f6f-44b9-a205-b80a9dcf2fc0&offset=0&id="+id.innerHTML;
-        console.log(url);
-        fetch(url)
-            .then(response => response.json())
-            .then(player=>{
-                document.getElementById("user_name").innerHTML = player.data[0].name;
-            });
+        for(let x=0;x<1000000000000000000000000000000;x++){
+            if(x==1000000000000000000000000000000){
+                let other = "https://api.cricapi.com/v1/players_info?apikey=f24486e8-5f6f-44b9-a205-b80a9dcf2fc0&offset=0&id="+id.innerHTML;
+                console.log(other);
+                fetch(other)
+                    .then(response => response.json())
+                    .then(player=>{
+                        document.getElementById("guess_name").innerHTML = player.data.name;
+                        // console.log(document.getElementById("guess_name").innerHTML);
+                    
+                    });
 
-        user_guess_name = document.getElementById("user_name").innerHTML;
-        
-            
+                user_guess_name = document.getElementById("guess_name").innerHTML;
+                console.log(user_guess_name);
+                    
 
-        
-        
-    
-    // Putting info user guessed player in tiles
-    if(true){
-        for(let i=0;i<width;i++){
-            let ch = document.getElementById(curr_height+"-"+i);
-            if(i==0){
-                ch.innerHTML = user_guess_name;
-            }
-            else if(i==1){
-                ch.innerHTML = user_guess_age;
-            }
-            else if(i==2){
-                ch.innerHTML = user_guess_team;
-            }
-            else if(i==3){
-                ch.innerHTML = user_guess_position;
-            }
-            else if(i==4){
-                ch.innerHTML = user_guess_number;
-            }
+                
+                
             
-        }
-        
-        curr_height+=1;
+                // Putting info user guessed player in tiles
+                if(true){
+                    console.log('in');
+                    for(let i=0;i<width;i++){
+                        let ch = document.getElementById(curr_height+"-"+i);
+                        if(i==0){
+                            ch.innerHTML = user_guess_name;
+                            // console.log(ch.innerHTML)
+                        }
+                        // else if(i==1){
+                        //     ch.innerHTML = user_guess_age;
+                        // }
+                        // else if(i==2){
+                        //     ch.innerHTML = user_guess_team;
+                        // }
+                        // else if(i==3){
+                        //     ch.innerHTML = user_guess_position;
+                        // }
+                        // else if(i==4){
+                        //     ch.innerHTML = user_guess_number;
+                        // }
+                        
+                    }
+                    
+                    curr_height+=1;
+                        }
+                    }
+            
     }
     //Displays not in list if user guess not valid
 
