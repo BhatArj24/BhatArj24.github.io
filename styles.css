@@ -11,7 +11,7 @@ h1 {
 .tile {
   /* Box */
   border: 2px solid lightgray;
-  width: 60px;
+  width: 80px;
   height: 60px;
   margin: 2.5px;
   background-size: 70px;
@@ -29,7 +29,10 @@ h1 {
   width: 240px;
 }
 .team {
-  width: 80px;
+  width: 100px;
+}
+.role{
+  width:150px;
 }
 
 #guesses {

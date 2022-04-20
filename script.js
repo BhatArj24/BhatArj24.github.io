@@ -25,8 +25,8 @@ class Player{
     
 
 }
-function check_name(user_guess_name,answer_name){
-    if(user_guess_name==answer_name){
+function check_name(u_guess_name,answer_name){
+    if(u_guess_name==answer_name){
         for (let i = 0; i < 5; i++) {
             let l = document.getElementById(curr_height+"-"+i);
             l.classList.add('correct');
@@ -64,8 +64,12 @@ function intialize() {
             if(c==0){
                 tile.classList.add("name");
             }
-            else if(c==2){
+            else if(c==1){
                 tile.classList.add("team");
+            }
+            else if(c==2){
+                tile.classList.add("role");
+
             }
             document.getElementById("guesses").appendChild(tile);
         }
@@ -83,67 +87,59 @@ function checkGuess(){
         let first_name = name_split[0];
         let last_name = name_split[1];
         let url_name = first_name +"%20"+last_name;
+        guess = guess.toString();
+        guess = guess.toLowerCase();
         let url = "https://api.cricapi.com/v1/players?apikey=f24486e8-5f6f-44b9-a205-b80a9dcf2fc0&offset=0&search="+url_name;
         fetch(url)
             .then(response => response.json())
             .then(player => {
-                document.getElementById("fetch_id").innerHTML = player.data[0].id;
-            });
-        guess = guess.toString();
-        guess = guess.toLowerCase();
-      
-        let id = document.getElementById("fetch_id");
-        
-        // id.style.visibility = 'hidden';
-
-        for(let x=0;x<1000000000000000000000000000000;x++){
-            if(x==1000000000000000000000000000000){
-                let other = "https://api.cricapi.com/v1/players_info?apikey=f24486e8-5f6f-44b9-a205-b80a9dcf2fc0&offset=0&id="+id.innerHTML;
+                let other = "https://api.cricapi.com/v1/players_info?apikey=f24486e8-5f6f-44b9-a205-b80a9dcf2fc0&offset=0&id="+player.data[0].id;
                 console.log(other);
                 fetch(other)
                     .then(response => response.json())
                     .then(player=>{
-                        document.getElementById("guess_name").innerHTML = player.data.name;
-                        // console.log(document.getElementById("guess_name").innerHTML);
-                    
-                    });
-
-                user_guess_name = document.getElementById("guess_name").innerHTML;
-                console.log(user_guess_name);
-                    
+                        user_guess_name = player.data.name;
+                        user_guess_country = player.data.country;
+                        user_guess_role = player.data.role;
+                        DOB = player.data.dateOfBirth
+                        DOB_Split = DOB.split("-");
+                        user_guess_year = DOB_Split[0];
+                        // Putting info user guessed player in tiles
+                        if(true){
+                            console.log('in');
+                            for(let i=0;i<width;i++){
+                                let ch = document.getElementById(curr_height+"-"+i);
+                                if(i==0){
+                                    ch.innerHTML = user_guess_name;
+                                    console.log('Yes')
+                                }
+                                else if(i==1){
+                                    ch.innerHTML = user_guess_country;
+                                }
+                                else if(i==2){
+                                    ch.innerHTML = user_guess_role;
+                                }
+                                else if(i==3){
+                                    ch.innerHTML = user_guess_year;
+                                }
+                                else if(i==4){
+                                    ch.innerHTML = user_guess_country;
+                                }
+                                
+                            }
+                            
+                            curr_height+=1;
+                                }
+                    })
+                    .catch(err => console.error(err));
 
                 
-                
+            })
+            .catch(err=>console.err(err));
+        
+            }
             
-                // Putting info user guessed player in tiles
-                if(true){
-                    console.log('in');
-                    for(let i=0;i<width;i++){
-                        let ch = document.getElementById(curr_height+"-"+i);
-                        if(i==0){
-                            ch.innerHTML = user_guess_name;
-                            // console.log(ch.innerHTML)
-                        }
-                        // else if(i==1){
-                        //     ch.innerHTML = user_guess_age;
-                        // }
-                        // else if(i==2){
-                        //     ch.innerHTML = user_guess_team;
-                        // }
-                        // else if(i==3){
-                        //     ch.innerHTML = user_guess_position;
-                        // }
-                        // else if(i==4){
-                        //     ch.innerHTML = user_guess_number;
-                        // }
-                        
-                    }
-                    
-                    curr_height+=1;
-                        }
-                    }
-            
-    }
+    
     //Displays not in list if user guess not valid
 
     console.log(answer_name);
@@ -154,7 +150,7 @@ function checkGuess(){
     
     
     
-}
+
 
 
 
