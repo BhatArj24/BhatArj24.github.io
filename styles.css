@@ -11,7 +11,7 @@ h1 {
 .tile {
   /* Box */
   border: 2px solid lightgray;
-  width: 80px;
+  width: 120px;
   height: 60px;
   margin: 2.5px;
   background-size: 70px;
@@ -29,19 +29,34 @@ h1 {
   width: 240px;
 }
 .team {
-  width: 100px;
+  width: 175px;
 }
 .role{
-  width:150px;
+  width:200px;
+  font-size: 20px;
+}
+.batting-hand{
+  width:120px;
+
 }
 
+
 #guesses {
-  width: 700px;
+  width: 900px;
   height: 420px;
   margin: 0 auto;
   margin-top: 3px;
   display: flex;
   flex-wrap: wrap;
+}
+#titles{
+  width: 950px;
+  margin: 0 auto;
+  margin-top: 3px;
+  display: flex;
+  flex-wrap: wrap;
+  font-family:sans-serif;
+  font-weight: bold;
 }
 
 input {
